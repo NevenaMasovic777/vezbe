@@ -1,0 +1,125 @@
+REACT
+
+1. pros and cons, how you compare it with Angular
+
+A library, not a framework
+
+CONS: You dont get lots of stuff out of the box but have to use diff libs for it (ex. routing)
+PROS: Low entrance level, lots of docs and tutorials
+
+2. How do you prefer to generate react project and what ways do you know?
+
+traditionally: npx create-react-app
+fastest solution: vite - tool that allows generating diff types of projects through command line
+
+3. What is virtual DOM? 
+
+Virtual DOM is the major feat inside react
+its a lightweight js representation of DOM tree -> js objects representing user interface 
+
+The virtual DOM is a programming concept where an ideal, or “virtual”, representation of a UI is kept in memory and synced with the “real” DOM by a library such as ReactDOM.
+This process is called reconciliation.
+React doesnt directly use real dom, first if comapres changes you made inside JS through virtual DOM and then updates ream dom if you made some changes
+
+This approach enables the declarative API of React: 
+You tell React what state you want the UI to be in, and it makes sure the DOM matches that state.
+This abstracts out the attribute manipulation, event handling, and manual DOM updating that you would otherwise have to use to build your app. 
+
+Since “virtual DOM” is more of a pattern than a specific technology, people sometimes say it to mean different things.
+In React world, the term “virtual DOM” is usually associated with React elements since they are the objects representing the user interface.
+React, however, also uses internal objects called “fibers” to hold additional information about the component tree.
+They may also be considered a part of “virtual DOM” implementation in React.
+
+4. What is the difference between virtual and shadow DOM?
+
+No, they are different.
+The Shadow DOM is a browser technology designed primarily for scoping variables and CSS in web components.
+The virtual DOM is a concept implemented by libraries in JavaScript on top of browser APIs.
+
+5. What is “React Fiber”?
+
+Fiber is the new reconciliation engine in React 16.
+Its main goal is to enable incremental rendering of the virtual DOM.
+
+6. What is JSX?
+
+JSX is syntax extension for JS that lets you write HTML-like markup inside JS file.
+Sugarcoated JS funcs that look like HTML.
+
+JSX can be written without react and react without JSX.
+
+7. Why do you use className and not class in React?
+
+Class is a reserved word in JS and we would have a coallision if we use the word 'class' directly inside 'markup'.
+
+8. What are functional components and props? How to pass props to func components?
+
+Functions that return which return some JS6 markup
+Functional components dont have any state inside 
+We use props to pass some info from parent -> child
+
+9. What are class components props and state? 
+
+Class approach is older approach. Its not deprecated but func components are more modern approach
+// pogledati kako izgleda
+class components have local state
+inside class components we have a lifecycle hooks
+
+10. What are dumb/smart components -> representational/conatiner components
+
+Representational/dumb component dont have any logic - just ui representation
+container/smart components -> have logic /state
+
+11. How to render a list of data and why is bad use index as a key? 
+
+in order for react to understand our array and to render it efficiently, we must provide key attribute so React knows
+how to destinguish elements
+if we alter out array by adding and deleting elements from array, we can acces the wrong element by index
+
+
+12. What is React.Fragment? 
+
+Used fro dome node without dom element
+<></> -> shorter version
+
+13. What is conditional rendering in React?
+
+1. if statement
+2. ternary operator
+3. condition && 
+
+14. How to apply styles in react?
+
+css file for global styling
+object in react and then inline
+as a separate file per component
+
+15. How parent and child can communicate in react and can we mutate props?
+
+We pass props from top down
+we cannot mutate props, they are readonly and that's so by designe
+how to communicate child -> parent? again passing from parent to child
+
+
+16. What is useState hook? 
+
+hook for managing state inside functional components -> [state, f] tumpple of state and state setter
+not allowed to be nested in loops conditions etc
+you should not organize state like obj
+
+17. useEffect hook
+
+Hook for handling side effects
+smth triggers rendering of component and useEffect is triggered
+
+18. useReducer hook
+
+bringing Redux inside React
+
+
+
+
+
+
+
+
