@@ -29,7 +29,7 @@ function createMultiplier(num) {
   //function factory
   return function (multiplier) {
     //The inner function "closes over" the multiplier variable.
-    return num * multiplier;
+    return num * multiplier; //num->2, multiplier->5
   };
 }
 

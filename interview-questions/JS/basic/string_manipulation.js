@@ -57,3 +57,29 @@ function countVowels(string) {
 function replaceSubstring(string, substring, replacement) {
   return string.replace(new RegExp(substring, "g"), replacement);
 }
+
+// 11.How to find the longest substring that doesnt repeat in a string?
+
+function longestUniqueSubstring(s) {
+  let charSet = new Set();
+  let left = 0,
+    maxLength = 0;
+  let startIndex = 0; // Track the starting index of the longest substring
+
+  for (let right = 0; right < s.length; right++) {
+    while (charSet.has(s[right])) {
+      charSet.delete(s[left]); // Remove leftmost character
+      left++; // Shrink window
+    }
+
+    charSet.add(s[right]); // Add new character
+    if (right - left + 1 > maxLength) {
+      maxLength = right - left + 1;
+      startIndex = left; // Update starting index
+    }
+  }
+
+  return s.substring(startIndex, startIndex + maxLength); // Extract substring
+}
+
+console.log(longestUniqueSubstring("abcabcbb")); // Output: 3 ("abc")

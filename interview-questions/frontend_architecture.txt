@@ -1,0 +1,291 @@
+1. What is frontend architecture, and why is it important?
+
+Frontend architecture refers to the structure and organization of code, tools, and processes used to build the user interface (UI) of a web application. It includes decisions about:
+
+Code organization: How files and components are structured.
+State management: How data is managed and shared across the application.
+Performance optimization: Techniques to ensure fast load times and smooth interactions.
+Scalability: Ensuring the application can grow without becoming unmaintainable.
+
+Why it’s important:
+
+Improves maintainability and readability of code.
+
+Enhances performance and user experience.
+
+Makes the application scalable and adaptable to future changes.
+
+2. What are the key principles of good frontend architecture?
+
+Key principles include:
+
+Separation of Concerns: Divide code into modular, reusable components.
+Single Responsibility Principle: Each component or module should have one responsibility.
+Reusability: Write code that can be reused across the application.
+Performance Optimization: Minimize load times and improve runtime performance.
+Scalability: Design the architecture to handle growth in features and users.
+Testability: Ensure the code is easy to test with unit and integration tests.
+Maintainability: Write clean, well-documented code that’s easy to update.
+
+3. What is the difference between monolithic and micro-frontend architectures?
+
+Monolithic Architecture:
+
+The entire frontend is built as a single, unified application.
+
+Easier to develop initially but harder to scale and maintain as the application grows.
+
+Example: A single React or Angular app.
+
+Micro-Frontend Architecture:
+
+The frontend is split into smaller, independent applications (micro-apps).
+
+Each micro-app can be developed, tested, and deployed independently.
+
+Improves scalability and team autonomy.
+
+Example: Using Webpack Module Federation to combine multiple React apps.
+
+✅ Monolithic Frontend
+
+A single large application where all frontend code is in one repo.
+Easier to develop in small teams but harder to scale.
+Example: Traditional React or Angular apps.
+
+✅ Microfrontend Architecture
+
+Divides a large frontend into smaller, independent applications that work together.
+Used for large-scale applications where teams work on separate parts.
+Example: Different teams handle different UI modules (like user profile, dashboard, etc.).
+
+📌 When to use Microfrontends?
+
+If multiple teams work on the same frontend project.
+If different UI parts need independent deployments.
+
+4. How do you manage state in a large frontend application?
+
+Component State: For local state within a component (e.g., React’s useState).
+
+Context API: For sharing state across components without prop drilling.
+
+State Management Libraries: Tools like Redux, MobX, or Zustand for global state.
+
+Server State Management: Libraries like React Query or SWR for managing data fetched from APIs.
+
+Atomic State: Using tools like Recoil or Jotai for fine-grained state management.
+
+Best Practices:
+
+Avoid overusing global state; keep state as local as possible.
+
+Use middleware (e.g., Redux Thunk or Saga) for side effects like API calls.
+
+Normalize state to avoid duplication and improve performance.
+
+5. What is the role of a design system in frontend architecture?
+
+A design system is a collection of reusable components, guidelines, and standards for building UIs. Its role in frontend architecture includes:
+
+Consistency: Ensures a uniform look and feel across the application.
+
+Reusability: Reduces duplication by providing pre-built components.
+Efficiency: Speeds up development by eliminating the need to build components from scratch.
+Maintainability: Makes it easier to update styles and components across the application.
+Examples: Material-UI, Ant Design, or custom design systems built with tools like Storybook.
+
+6. How do you optimize the performance of a frontend application?
+
+Performance optimization techniques include:
+
+Code Splitting: Split code into smaller chunks loaded on demand (e.g., React.lazy).
+Lazy Loading: Load resources (images, components) only when needed.
+Minification and Compression: Minify CSS, JavaScript, and compress assets.
+Caching: Use browser caching and service workers for static assets.
+Tree Shaking: Remove unused code during the build process.
+Optimized Images: Use modern formats like WebP and lazy load images.
+Reduce Render Blocking: Defer non-critical JavaScript and CSS.
+
+7. What is the role of a build tool in frontend architecture?
+
+Build tools automate tasks like:
+
+Bundling: Combining multiple files into a single bundle (e.g., Webpack, Vite).
+
+Transpiling: Converting modern JavaScript (ES6+) into browser-compatible code (e.g., Babel).
+
+Minification: Reducing file size by removing unnecessary characters.
+
+Optimization: Improving performance through techniques like tree shaking and code splitting.
+
+Examples: Webpack, Vite, Parcel, Rollup.
+
+8. How do you ensure scalability in frontend architecture?
+
+Modularize Code: Break the application into smaller, reusable components.
+
+Use Micro-Frontends: Split the application into independent micro-apps.
+
+Optimize Performance: Ensure the application remains fast as it grows.
+
+Adopt Best Practices: Follow coding standards and design patterns.
+
+Automate Testing: Use unit, integration, and end-to-end tests to catch issues early.
+
+Monitor and Analyze: Use tools like Lighthouse or New Relic to monitor performance.
+
+9. What are the benefits of using a component-based architecture?
+
+Reusability: Components can be reused across the application.
+
+Maintainability: Easier to update and debug individual components.
+
+Separation of Concerns: Each component handles a specific part of the UI.
+
+Scalability: Components can be combined to build complex UIs.
+
+Testability: Components can be tested in isolation.
+
+10. How do you handle cross-cutting concerns in frontend architecture?
+
+Cross-cutting concerns (e.g., logging, error handling, authentication) can be handled using:
+
+Higher-Order Components (HOCs): Wrap components to add functionality.
+
+Custom Hooks: Reusable logic for state and side effects (e.g., React hooks).
+
+Middleware: For state management libraries like Redux.
+
+Service Layers: Centralized services for API calls or logging.
+
+Context API: Share common functionality across components.
+
+11. How do you structure a scalable frontend application?
+    A well-structured frontend application typically follows:
+    📁 Folder Structure Example (React, Vue, Angular)
+
+/src
+/components # Reusable UI components
+/pages # Route-specific pages
+/services # API calls, authentication, etc.
+/store # State management (Redux, Zustand, Vuex)
+/assets # Images, icons, styles
+/hooks # Custom React hooks (if applicable)
+/utils # Helper functions
+📌 Best Practices:
+
+Follow component-based architecture (React, Vue).
+Use feature-based folder structures instead of monolithic ones.
+Implement lazy loading & code splitting for optimization.
+
+12. How do you manage state in a large frontend application?
+    State management options:
+
+React Context API – For global state in small/medium apps.
+Redux / Zustand / MobX – For large-scale apps needing centralized state.
+React Query / SWR – For fetching and caching server-side data.
+📌 Best Practices for State Management
+✅ Keep state local where possible – Avoid unnecessary global state.
+✅ Use derived state – Don’t store data that can be computed.
+✅ Normalize state shape – Use entities to avoid duplication.
+
+13. What strategies do you use for code splitting and performance optimization?
+    🚀 Performance Optimization Techniques
+
+Code Splitting – Load JavaScript in smaller chunks using dynamic imports (React.lazy()).
+Lazy Loading – Load components only when needed (import() in React/Vue).
+Memoization – Optimize re-renders with useMemo() and useCallback().
+Image Optimization – Use webp, responsive images, and lazy loading.
+Caching – Store API responses in localStorage or use service workers.
+
+14. How do you ensure maintainability and reusability in a frontend codebase?
+    ✅ Component-Based Architecture – Reuse UI components across the app.
+    ✅ Follow the DRY Principle – Don’t repeat yourself; extract reusable logic.
+    ✅ Use TypeScript – Adds static typing for better maintainability.
+    ✅ Linting & Code Formatting – Use ESLint & Prettier to enforce coding standards.
+    ✅ Documentation – Maintain good README files & component documentation.
+
+15. What role does server-side rendering play in frontend architecture?
+
+✅ SSR (Server-Side Rendering) Benefits:
+
+Faster initial page load – HTML is pre-rendered and sent to the browser.
+Better SEO – Search engines can index content before JavaScript loads.
+Improved performance on slow devices – Less client-side work.
+
+✅ Popular SSR Frameworks:
+
+Next.js (React)
+Nuxt.js (Vue)
+📌 When to use SSR?
+
+If SEO is important (e.g., blogs, e-commerce).
+When users expect fast page loads.
+
+16. What are the benefits and challenges of component-based architecture?
+
+✅ Benefits of Component-Based Architecture
+
+Reusability – Write once, use multiple times.
+Scalability – Easy to extend and modify.
+Maintainability – Easier to debug and update specific parts.
+
+⚠️ Challenges
+
+Over-Engineering – Too many small components can be hard to manage.
+Performance – Unnecessary re-renders if components are not optimized.
+Props Drilling – Can make data passing complicated (use Context API or Redux).
+
+17. How do you handle authentication and authorization in frontend applications?
+
+✅ Authentication Strategies
+
+Token-based authentication (JWT, OAuth, Firebase).
+Session-based authentication (Cookies + server sessions).
+
+✅ Authorization (Access Control)
+
+Role-Based Access Control (RBAC) – Users have different roles (Admin, User, etc.).
+Permissions-based Access Control – Restrict features based on user permissions.
+
+📌 Best Practices
+
+Store JWT securely (Use httpOnly cookies instead of localStorage for sensitive tokens).
+Implement route guards in frameworks like React Router.
+
+18. What are the best practices for frontend security, and how do you prevent common vulnerabilities?
+    🚀 Common Security Threats & Fixes
+
+1️⃣ Cross-Site Scripting (XSS)
+
+Solution: Escape user input, use helmet middleware in Express, avoid dangerouslySetInnerHTML in React.
+
+2️⃣ Cross-Site Request Forgery (CSRF)
+
+Solution: Use CSRF tokens, enable SameSite attribute on cookies.
+
+3️⃣ Clickjacking
+
+Solution: Use the X-Frame-Options header to prevent UI embedding in iframes.
+
+4️⃣ Insecure API Calls
+
+Solution: Always validate API responses, avoid storing sensitive tokens in localStorage.
+📌 Best Practices
+
+Use HTTPS to encrypt data.
+Implement Content Security Policy (CSP) headers.
+Keep dependencies up to date (patch security vulnerabilities).
+
+19. How do you design a frontend application to be scalable and maintainable?
+
+This question dives into best practices for structuring a frontend app, handling state management, and keeping code modular.
+Would you use micro-frontends, component-driven development, or monorepos?
+How do you keep the architecture flexible for future features?
+
+20. What are the advantages and challenges of using a Micro-Frontend architecture?
+
+Micro-frontends are 🔥 for large-scale applications! But they introduce complexities like code splitting, communication between apps, and deployment strategies.
+When does it make sense to use them, and when is it overkill?
+How do you ensure a seamless UX while keeping micro-frontends independent?

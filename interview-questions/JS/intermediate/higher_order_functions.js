@@ -19,7 +19,7 @@ Behavior Customization: You can pass behavior (functions) as arguments to custom
 function map(arr, cb) {
   const newArr = [];
   for (let i = 0; i < arr.length; i++) {
-    newArr.push(cb(arr[i]));
+    newArr.push(cb(arr[i])); // => arr[i] je argument callback funkcije
   }
   return newArr;
 }
@@ -62,19 +62,21 @@ function forEach(arr, cb) {
 
 forEach([1, 2, 3], (x) => console.log(x * 2)); // 2 4 6
 
-Array.prototype.map = function (cb) {
+Array.prototype.customMap = function (cb) {
   const newArr = [];
   for (let i = 0; i < this.length; i++) {
     newArr.push(cb(this[i]));
   }
+  console.log(newArr)
   return newArr;
-}[(1, 2, 3)].map((x) => x * 2); // [ 2, 4, 6 ]
+};
+[1,2,4].customMap((item) => item * 2)
 
 // 5. Write a function compose that takes multiple functions and returns a composed function.
 
 function compose(...fns) {
   return function (x) {
-    return fns.reduceRight((acc, fn) => fn(acc), x);
+    return fns.reduceRight((acc, fn) => fn(acc), x /* argument that we pass to funcs that we pass as ...fns */); 
   };
 }
 
@@ -82,7 +84,7 @@ const add1 = (x) => x + 1;
 const double = (x) => x * 2;
 const triple = (x) => x * 3;
 const add6 = compose(add1, double, triple);
-console.log(add6(0)); // 6
+console.log('task 5', add6(1)); // 6 //argument kao x
 
 // 6. Write a function pipe that takes multiple functions and returns a piped function.
 
@@ -118,7 +120,7 @@ console.log(add8(2, 3)); // undefined
 
 function curry(fn) {
   return function curried(...args) {
-    if (args.length >= func.length) return func(...args);
+    if (args.length >= fn.length) return fn(...args);
     return (...moreArgs) => curried(...args, ...moreArgs);
   };
 }

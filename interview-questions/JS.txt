@@ -43,3 +43,238 @@ This environment consists of any variables that were in-scope at the time the cl
 In this case, myFunc is a reference to the instance of the function displayName that is created when makeFunc is run.
 The instance of displayName maintains a reference to its lexical environment, within which the variable name exists.
 For this reason, when myFunc is invoked, the variable name remains available for use, and "Mozilla" is passed to console.log.
+
+CURRYING
+
+Currying is a functional programming technique in JavaScript (and other languages) where a function that takes multiple arguments is transformed into a sequence of functions, each taking a single argument. 
+Instead of calling a function with all its arguments at once, you call it with one argument at a time, and each call returns a new function that accepts the next argument, until all arguments are provided and the final result is computed.
+
+A function like f(a, b, c) is transformed into f(a)(b)(c).
+
+Each step returns a new function that waits for the next argument.
+
+Why Use Currying?
+
+Partial Application: You can create specialized functions by fixing some arguments ahead of time.
+
+const addTwo = curriedAdd(1)(2); // Fixes a=1 and b=2
+console.log(addTwo(3)); // Output: 6 (1 + 2 + 3)
+console.log(addTwo(5)); // Output: 8 (1 + 2 + 5)
+Reusability: Curried functions can be reused in different contexts by passing different arguments.
+
+Functional Composition: Currying makes it easier to compose functions, which is a key concept in functional programming.
+
+Practical Example: Currying with Arrow Functions
+You can write curried functions more concisely using arrow functions:
+
+const curriedAdd = (a) => (b) => (c) => a + b + c;
+
+console.log(curriedAdd(1)(2)(3)); // Output: 6
+
+Currying is often used in scenarios like event handling, where you want to create a reusable function with some predefined arguments:
+
+const handleClick = (buttonId) => (event) => {
+  console.log(`Button ${buttonId} clicked!`, event);
+};
+
+document.getElementById("button1").addEventListener("click", handleClick(1));
+document.getElementById("button2").addEventListener("click", handleClick(2));
+
+You can create a utility function to automatically curry any function:
+
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn(...args);
+    } else {
+      return (...moreArgs) => curried(...args, ...moreArgs);
+    }
+  };
+}
+
+// Example usage:
+const add = (a, b, c) => a + b + c;
+const curriedAdd = curry(add);
+
+console.log(curriedAdd(1)(2)(3)); // Output: 6
+console.log(curriedAdd(1, 2)(3)); // Output: 6
+console.log(curriedAdd(1)(2, 3)); // Output: 6
+
+Summary:
+Currying transforms a multi-argument function into a sequence of single-argument functions.
+
+It enables partial application, reusability, and functional composition.
+
+You can curry functions manually or use a utility function to automate the process.
+
+//MEMOIZATION
+
+In programming, memoization is an optimization technique that makes applications more efficient and hence faster.
+It does this by storing computation results in cache, and retrieving that same information from the cache the next time it's needed instead of computing it again.
+
+In simpler words, it consists of storing in cache the output of a function,
+and making the function check if each required computation is in the cache before computing it.
+
+//THROTTLING
+
+Throttling is a technique that limits how often a function can be called in a given period of time.
+It is useful for improving the performance and responsiveness of web pages that have event listeners that trigger heavy or expensive operations, such as animations, scrolling, resizing, fetching data, etc.
+
+For example, if you have a function that fetches some data from an API every time the user scrolls the page,
+you might want to throttle it so that it only makes one request every second, instead of making hundreds of requests as the user scrolls.
+This way, you can avoid overloading the server or the browser with unnecessary requests and reduce the bandwidth consumption.
+
+// PERFORMANCE PROFILING
+
+What is Performance Profiling?
+Performance profiling is the process of measuring and analyzing the performance of your code to identify bottlenecks (slow or resource-intensive parts) and optimize them. It helps you answer questions like:
+
+Which functions are taking the most time to execute?
+
+Are there any memory leaks?
+
+Are there unnecessary computations or redundant operations?
+
+Why is Performance Profiling Important?
+Improve User Experience:
+
+Faster code means a more responsive application, which leads to happier users.
+
+Reduce Resource Usage:
+
+Optimized code consumes less CPU, memory, and battery, especially important for mobile devices.
+
+Debug Performance Issues:
+
+Profiling helps you pinpoint exactly where your code is slowing down.
+
+How to Perform Performance Profiling in JavaScript
+1. Using console.time and console.timeEnd
+This is the simplest way to measure the execution time of a block of code.
+
+javascript
+Copy
+console.time("loop");
+for (let i = 0; i < 1000000; i++) {}
+console.timeEnd("loop"); // "loop: Xms"
+What Happens?
+
+console.time("loop") starts a timer with the label "loop".
+
+console.timeEnd("loop") stops the timer and logs the elapsed time.
+
+2. Using performance.now()
+This provides a high-resolution timestamp, useful for measuring small time intervals.
+
+javascript
+Copy
+const start = performance.now();
+for (let i = 0; i < 1000000; i++) {}
+const end = performance.now();
+console.log(`Execution time: ${end - start}ms`);
+What Happens?
+
+performance.now() returns the current time in milliseconds with microsecond precision.
+
+The difference between start and end gives the execution time.
+
+3. Using console.profile and console.profileEnd
+This allows you to create a detailed performance profile of your code.
+
+javascript
+Copy
+console.profile("profile");
+for (let i = 0; i < 1000000; i++) {}
+console.profileEnd("profile");
+What Happens?
+
+console.profile("profile") starts a profiling session.
+
+console.profileEnd("profile") ends the session and logs the results.
+
+You can view the profile in the browser’s developer tools (e.g., Chrome DevTools).
+
+4. Using Browser DevTools
+Modern browsers like Chrome, Firefox, and Edge come with built-in developer tools that include powerful profiling features.
+
+Steps to Profile in Chrome DevTools:
+Open Chrome DevTools (F12 or Ctrl+Shift+I).
+
+Go to the Performance tab.
+
+Click the Record button (●) to start profiling.
+
+Perform the actions you want to profile (e.g., click a button, load a page).
+
+Click the Stop button (■) to end profiling.
+
+Analyze the results:
+
+Call Tree: Shows which functions were called and how long they took.
+
+Bottom-Up: Shows which functions consumed the most time.
+
+Event Log: Shows a timeline of events (e.g., function calls, rendering).
+
+5. Using PerformanceObserver
+This API allows you to observe performance-related events (e.g., long tasks, layout shifts).
+
+javascript
+Copy
+const observer = new PerformanceObserver((list) => {
+  for (const entry of list.getEntries()) {
+    console.log(entry);
+  }
+});
+observer.observe({ entryTypes: ["longtask"] });
+What Happens?
+
+The PerformanceObserver listens for performance events (e.g., tasks taking longer than 50ms).
+
+It logs these events for analysis.
+
+6. Using memory API (Node.js)
+In Node.js, you can use the process.memoryUsage() method to measure memory usage.
+
+javascript
+Copy
+const startMemory = process.memoryUsage().heapUsed;
+for (let i = 0; i < 1000000; i++) {}
+const endMemory = process.memoryUsage().heapUsed;
+console.log(`Memory used: ${endMemory - startMemory} bytes`);
+What Happens?
+
+process.memoryUsage() returns an object with memory usage details.
+
+The difference between startMemory and endMemory gives the memory consumed.
+
+Common Performance Bottlenecks
+Slow Functions:
+
+Functions that take too long to execute.
+
+Use profiling to identify and optimize them.
+
+Memory Leaks:
+
+Objects that are no longer needed but not garbage collected.
+
+Use memory profiling to detect and fix leaks.
+
+Excessive DOM Manipulation:
+
+Frequent updates to the DOM can slow down rendering.
+
+Batch DOM updates or use virtual DOM libraries like React.
+
+Inefficient Algorithms:
+
+Algorithms with high time complexity (e.g., nested loops).
+
+Optimize or replace them with more efficient ones.
+
+Network Requests:
+
+Slow API calls or large payloads.
+
+Use caching, compression, or lazy loading.
